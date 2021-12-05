@@ -7,7 +7,7 @@ import (
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
 	"github.com/pkg/errors"
-	"github.com/quickfixgo/quickfix/config"
+	"github.com/rome314/quickfix/config"
 )
 
 type mongoStoreFactory struct {
@@ -95,14 +95,14 @@ func generateMessageFilter(s *SessionID) (messageFilter *mongoQuickFixEntryData)
 }
 
 type mongoQuickFixEntryData struct {
-	//Message specific data
+	// Message specific data
 	Msgseq  int    `bson:"msgseq,omitempty"`
 	Message []byte `bson:"message,omitempty"`
-	//Session specific data
+	// Session specific data
 	CreationTime   time.Time `bson:"creation_time,omitempty"`
 	IncomingSeqNum int       `bson:"incoming_seq_num,omitempty"`
 	OutgoingSeqNum int       `bson:"outgoing_seq_num,omitempty"`
-	//Indexed data
+	// Indexed data
 	BeginString      string `bson:"begin_string"`
 	SessionQualifier string `bson:"session_qualifier"`
 	SenderCompID     string `bson:"sender_comp_id"`
@@ -249,7 +249,7 @@ func (store *mongoStore) SaveMessage(seqNum int, msg []byte) (err error) {
 
 func (store *mongoStore) GetMessages(beginSeqNum, endSeqNum int) (msgs [][]byte, err error) {
 	msgFilter := generateMessageFilter(&store.sessionID)
-	//Marshal into database form
+	// Marshal into database form
 	msgFilterBytes, err := bson.Marshal(msgFilter)
 	if err != nil {
 		return
@@ -259,7 +259,7 @@ func (store *mongoStore) GetMessages(beginSeqNum, endSeqNum int) (msgs [][]byte,
 	if err != nil {
 		return
 	}
-	//Modify the query to use a range for the sequence filter
+	// Modify the query to use a range for the sequence filter
 	seqFilter["msgseq"] = bson.M{
 		"$gte": beginSeqNum,
 		"$lte": endSeqNum,

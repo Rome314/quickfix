@@ -3,7 +3,7 @@ package quickfix
 import (
 	"time"
 
-	"github.com/quickfixgo/quickfix/internal"
+	"github.com/rome314/quickfix/internal"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
@@ -51,7 +51,7 @@ func (s *QuickFIXSuite) MessageEqualsBytes(expectedBytes []byte, msg *Message) {
 	s.Equal(string(actualBytes), string(expectedBytes))
 }
 
-//MockStore wraps a memory store and mocks Refresh for convenience
+// MockStore wraps a memory store and mocks Refresh for convenience
 type MockStore struct {
 	mock.Mock
 	memoryStore

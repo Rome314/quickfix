@@ -1,7 +1,7 @@
 QuickFIX/Go
 ===========
 
-[![Build Status](https://github.com/quickfixgo/quickfix/workflows/CI/badge.svg)](https://github.com/quickfixgo/quickfix/actions) [![GoDoc](https://godoc.org/github.com/quickfixgo/quickfix?status.png)](https://godoc.org/github.com/quickfixgo/quickfix) [![Go Report Card](https://goreportcard.com/badge/github.com/quickfixgo/quickfix)](https://goreportcard.com/report/github.com/quickfixgo/quickfix)
+[![Build Status](https://github.com/rome314/quickfix/workflows/CI/badge.svg)](https://github.com/rome314/quickfix/actions) [![GoDoc](https://godoc.org/github.com/rome314/quickfix?status.png)](https://godoc.org/github.com/rome314/quickfix) [![Go Report Card](https://goreportcard.com/badge/github.com/rome314/quickfix)](https://goreportcard.com/report/github.com/rome314/quickfix)
 
 - Website: http://www.quickfixgo.org
 - Mailing list: [Google Groups](https://groups.google.com/forum/#!forum/quickfixgo)
@@ -12,19 +12,19 @@ Getting Started and Documentation
 ---------------------------------
 
 * [User Manual](http://quickfixgo.org/docs)
-* [API Documentation](https://godoc.org/github.com/quickfixgo/quickfix)
+* [API Documentation](https://godoc.org/github.com/rome314/quickfix)
 
 ### Installation
 
 To install QuickFIX/Go, use `go get`:
 
 ```sh
-$ go get github.com/quickfixgo/quickfix
+$ go get github.com/rome314/quickfix
 ```
 
 ### Staying up to date
 
-To update QuickFIX/Go to the latest version, use `go get -u github.com/quickfixgo/quickfix`.
+To update QuickFIX/Go to the latest version, use `go get -u github.com/rome314/quickfix`.
 
 ### Example Apps
 
@@ -128,4 +128,4 @@ Note that to specify a specific revision, you can manually edit the `go.mod` fil
 Licensing
 ---------
 
-This software is available under the QuickFIX Software License. Please see the [LICENSE.txt](https://github.com/quickfixgo/quickfix/blob/master/LICENSE.txt) for the terms specified by the QuickFIX Software License.
+This software is available under the QuickFIX Software License. Please see the [LICENSE.txt](https://github.com/rome314/quickfix/blob/master/LICENSE.txt) for the terms specified by the QuickFIX Software License.

@@ -7,9 +7,9 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/quickfixgo/quickfix"
-	"github.com/quickfixgo/quickfix/gen/field"
-	"github.com/quickfixgo/quickfix/gen/tag"
+	"github.com/rome314/quickfix"
+	"github.com/rome314/quickfix/gen/field"
+	"github.com/rome314/quickfix/gen/tag"
 )
 
 var router *quickfix.MessageRouter = quickfix.NewMessageRouter()
@@ -91,7 +91,7 @@ func copyMessage(msg *quickfix.Message) *quickfix.Message {
 func main() {
 	app := &EchoApplication{}
 	app.log = log.New(ioutil.Discard, "", log.LstdFlags)
-	//app.log = log.New(os.Stdout, "", log.LstdFlags)
+	// app.log = log.New(os.Stdout, "", log.LstdFlags)
 
 	router.AddRoute(quickfix.BeginStringFIX40, "D", app.processMsg)
 	router.AddRoute(quickfix.BeginStringFIX41, "D", app.processMsg)

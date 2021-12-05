@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/quickfixgo/quickfix/internal"
+	"github.com/rome314/quickfix/internal"
 
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
@@ -70,7 +70,7 @@ func (s *SessionSuite) TestInsertSendingTime() {
 		Precision         TimestampPrecision
 		ExpectedPrecision TimestampPrecision
 	}{
-		{BeginStringFIX40, Millis, Seconds}, //config is ignored for fix < 4.2
+		{BeginStringFIX40, Millis, Seconds}, // config is ignored for fix < 4.2
 		{BeginStringFIX41, Millis, Seconds},
 
 		{BeginStringFIX42, Millis, Millis},
@@ -170,7 +170,7 @@ func (s *SessionSuite) TestCheckTargetTooHigh() {
 	s.Require().NotNil(err, "sequence number too high should return an error")
 	s.IsType(targetTooHigh{}, err)
 
-	//spot on
+	// spot on
 	msg.Header.SetField(tagMsgSeqNum, FIXInt(45))
 	s.Nil(s.session.checkTargetTooHigh(msg))
 }
@@ -217,13 +217,13 @@ func (s *SessionSuite) TestCheckTargetTooLow() {
 	s.Require().NotNil(err, "sequence number is required")
 	s.Equal(rejectReasonRequiredTagMissing, err.RejectReason())
 
-	//too low
+	// too low
 	msg.Header.SetField(tagMsgSeqNum, FIXInt(43))
 	err = s.session.checkTargetTooLow(msg)
 	s.NotNil(err, "sequence number too low should return error")
 	s.IsType(targetTooLow{}, err)
 
-	//spot on
+	// spot on
 	msg.Header.SetField(tagMsgSeqNum, FIXInt(45))
 	s.Nil(s.session.checkTargetTooLow(msg))
 }
@@ -238,34 +238,34 @@ func (s *SessionSuite) TestShouldSendReset() {
 		NextTargetMsgSeqNum int
 		Expected            bool
 	}{
-		{BeginStringFIX40, true, false, false, 1, 1, false}, //ResetSeqNumFlag not available < fix41
+		{BeginStringFIX40, true, false, false, 1, 1, false}, // ResetSeqNumFlag not available < fix41
 
-		{BeginStringFIX41, true, false, false, 1, 1, true}, //session must be configured to reset on logon
+		{BeginStringFIX41, true, false, false, 1, 1, true}, // session must be configured to reset on logon
 		{BeginStringFIX42, true, false, false, 1, 1, true},
 		{BeginStringFIX43, true, false, false, 1, 1, true},
 		{BeginStringFIX44, true, false, false, 1, 1, true},
 		{BeginStringFIXT11, true, false, false, 1, 1, true},
 
-		{BeginStringFIX41, false, true, false, 1, 1, true}, //or disconnect
+		{BeginStringFIX41, false, true, false, 1, 1, true}, // or disconnect
 		{BeginStringFIX42, false, true, false, 1, 1, true},
 		{BeginStringFIX43, false, true, false, 1, 1, true},
 		{BeginStringFIX44, false, true, false, 1, 1, true},
 		{BeginStringFIXT11, false, true, false, 1, 1, true},
 
-		{BeginStringFIX41, false, false, true, 1, 1, true}, //or logout
+		{BeginStringFIX41, false, false, true, 1, 1, true}, // or logout
 		{BeginStringFIX42, false, false, true, 1, 1, true},
 		{BeginStringFIX43, false, false, true, 1, 1, true},
 		{BeginStringFIX44, false, false, true, 1, 1, true},
 		{BeginStringFIXT11, false, false, true, 1, 1, true},
 
-		{BeginStringFIX41, true, true, false, 1, 1, true}, //or combo
+		{BeginStringFIX41, true, true, false, 1, 1, true}, // or combo
 		{BeginStringFIX42, false, true, true, 1, 1, true},
 		{BeginStringFIX43, true, false, true, 1, 1, true},
 		{BeginStringFIX44, true, true, true, 1, 1, true},
 
-		{BeginStringFIX41, false, false, false, 1, 1, false}, //or will not be set
+		{BeginStringFIX41, false, false, false, 1, 1, false}, // or will not be set
 
-		{BeginStringFIX41, true, false, false, 1, 10, false}, //session seq numbers should be reset at the time of check
+		{BeginStringFIX41, true, false, false, 1, 10, false}, // session seq numbers should be reset at the time of check
 		{BeginStringFIX42, true, false, false, 2, 1, false},
 		{BeginStringFIX43, true, false, false, 14, 100, false},
 	}
@@ -930,7 +930,7 @@ func (suite *SessionSendTestSuite) TestDropAndSendDropsQueue() {
 	suite.MessageType(string(msgTypeLogon), msg)
 	suite.FieldEquals(tagMsgSeqNum, 3, msg.Header)
 
-	//only one message sent
+	// only one message sent
 	suite.LastToAdminMessageSent()
 	suite.NoMessageSent()
 }
@@ -952,7 +952,7 @@ func (suite *SessionSendTestSuite) TestDropAndSendDropsQueueWithReset() {
 	suite.MessageType(string(msgTypeLogon), msg)
 	suite.FieldEquals(tagMsgSeqNum, 1, msg.Header)
 
-	//only one message sent
+	// only one message sent
 	suite.LastToAdminMessageSent()
 	suite.NoMessageSent()
 }

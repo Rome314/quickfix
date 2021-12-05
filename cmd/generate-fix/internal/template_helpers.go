@@ -3,7 +3,7 @@ package internal
 import (
 	"fmt"
 
-	"github.com/quickfixgo/quickfix/datadictionary"
+	"github.com/rome314/quickfix/datadictionary"
 )
 
 func checkIfDecimalImportRequiredForFields(fTypes []*datadictionary.FieldType) (ok bool, err error) {
@@ -285,7 +285,7 @@ func routerBeginString(spec *datadictionary.DataDictionary) (routerBeginString s
 		routerBeginString = "FIXT.1.1"
 	case spec.Major != 5 && spec.ServicePack == 0:
 		routerBeginString = fmt.Sprintf("FIX.%v.%v", spec.Major, spec.Minor)
-		//ApplVerID enums
+		// ApplVerID enums
 	case spec.Major == 2:
 		routerBeginString = "0"
 	case spec.Major == 3:

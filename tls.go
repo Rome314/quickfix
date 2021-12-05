@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/quickfixgo/quickfix/config"
+	"github.com/rome314/quickfix/config"
 )
 
 func loadTLSConfig(settings *SessionSettings) (tlsConfig *tls.Config, err error) {
@@ -97,7 +97,7 @@ func loadTLSConfig(settings *SessionSettings) (tlsConfig *tls.Config, err error)
 	return
 }
 
-//defaultTLSConfig brought to you by https://github.com/gtank/cryptopasta/
+// defaultTLSConfig brought to you by https://github.com/gtank/cryptopasta/
 func defaultTLSConfig() *tls.Config {
 	return &tls.Config{
 		// Avoids most of the memorably-named TLS attacks

@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/quickfixgo/quickfix/internal"
+	"github.com/rome314/quickfix/internal"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -82,7 +82,7 @@ func (s *LogonStateTestSuite) TestFixMsgInLogon() {
 	s.MockApp.AssertExpectations(s.T())
 
 	s.State(inSession{})
-	s.Equal(32*time.Second, s.session.HeartBtInt)  //should be written from logon message
+	s.Equal(32*time.Second, s.session.HeartBtInt) // should be written from logon message
 	s.False(s.session.HeartBtIntOverride)
 
 	s.LastToAdminMessageSent()
@@ -111,7 +111,7 @@ func (s *LogonStateTestSuite) TestFixMsgInLogonHeartBtIntOverride() {
 	s.MockApp.AssertExpectations(s.T())
 
 	s.State(inSession{})
-	s.Equal(time.Second, s.session.HeartBtInt) //should not have changed
+	s.Equal(time.Second, s.session.HeartBtInt) // should not have changed
 	s.True(s.session.HeartBtIntOverride)
 
 	s.LastToAdminMessageSent()
@@ -308,7 +308,7 @@ func (s *LogonStateTestSuite) TestFixMsgInLogonSeqNumTooHigh() {
 	s.State(resendState{})
 	s.NextTargetMsgSeqNum(1)
 
-	//session should send logon, and then queues resend request for send
+	// session should send logon, and then queues resend request for send
 	s.MockApp.AssertNumberOfCalls(s.T(), "ToAdmin", 2)
 	msgBytesSent, ok := s.Receiver.LastMessage()
 	s.Require().True(ok)

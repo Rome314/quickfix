@@ -12,8 +12,8 @@ import (
 	"sync"
 	"text/template"
 
-	"github.com/quickfixgo/quickfix/cmd/generate-fix/internal"
-	"github.com/quickfixgo/quickfix/datadictionary"
+	"github.com/rome314/quickfix/cmd/generate-fix/internal"
+	"github.com/rome314/quickfix/datadictionary"
 )
 
 var (
@@ -152,7 +152,7 @@ func main() {
 		}
 
 		switch pkg {
-		//uses fixt11 header/trailer
+		// uses fixt11 header/trailer
 		case "fix50", "fix50sp1", "fix50sp2":
 		default:
 			waitGroup.Add(1)

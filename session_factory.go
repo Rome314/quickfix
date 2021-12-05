@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/quickfixgo/quickfix/config"
-	"github.com/quickfixgo/quickfix/datadictionary"
-	"github.com/quickfixgo/quickfix/internal"
+	"github.com/rome314/quickfix/config"
+	"github.com/rome314/quickfix/datadictionary"
+	"github.com/rome314/quickfix/internal"
 )
 
 var dayLookup = map[string]time.Weekday{
@@ -41,11 +41,11 @@ var applVerIDLookup = map[string]string{
 }
 
 type sessionFactory struct {
-	//True if building sessions that initiate logon
+	// True if building sessions that initiate logon
 	BuildInitiators bool
 }
 
-//Creates Session, associates with internal session registry
+// Creates Session, associates with internal session registry
 func (f sessionFactory) createSession(
 	sessionID SessionID, storeFactory MessageStoreFactory, settings *SessionSettings,
 	logFactory LogFactory, application Application,
@@ -91,7 +91,7 @@ func (f sessionFactory) newSession(
 			s.DefaultApplVerID = applVerID
 		}
 
-		//If the transport or app data dictionary setting is set, the other also needs to be set.
+		// If the transport or app data dictionary setting is set, the other also needs to be set.
 		if settings.HasSetting(config.TransportDataDictionary) || settings.HasSetting(config.AppDataDictionary) {
 			var transportDataDictionaryPath, appDataDictionaryPath string
 			if transportDataDictionaryPath, err = settings.Setting(config.TransportDataDictionary); err != nil {
@@ -404,7 +404,7 @@ func (f sessionFactory) buildHeartBtIntSettings(session *session, settings *Sess
 			return
 		}
 	}
-	
+
 	if session.HeartBtIntOverride || mustProvide {
 		var heartBtInt int
 		if heartBtInt, err = settings.IntSetting(config.HeartBtInt); err != nil {

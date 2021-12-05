@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/quickfixgo/quickfix/internal"
+	"github.com/rome314/quickfix/internal"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -317,7 +317,7 @@ func (s *InSessionTestSuite) TestFIXMsgInResendRequestDoNotSendApp() {
 	s.MockApp.AssertNumberOfCalls(s.T(), "ToApp", 1)
 	s.NextSenderMsgSeqNum(4)
 
-	//NOTE: a cheat here, need to reset mock
+	// NOTE: a cheat here, need to reset mock
 	s.MockApp = MockApp{}
 	s.MockApp.On("FromAdmin").Return(nil)
 	s.MockApp.On("ToApp").Return(ErrDoNotSend)
